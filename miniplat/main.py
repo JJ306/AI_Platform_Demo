@@ -4,9 +4,11 @@ from fastapi import Depends, FastAPI
 from pydantic import BaseModel
 
 from miniplat.llm import OllamaClient
+from miniplat.rag import router as rag_router
 
 app = FastAPI(title="miniplat", version="0.1.0")
-
+# this is the main FastAPI app, which includes the RAG router and defines the /chat endpoint.
+app.include_router(rag_router)
 
 def get_client() -> OllamaClient:
     """Dependency: the model client. Overridden in tests with a fake."""
@@ -33,5 +35,3 @@ async def chat(req: ChatRequest, client: OllamaClient = Depends(get_client)) -> 
     client.model = req.model or client.model
     reply = await client.chat(req.message)
     return ChatResponse(reply=reply, model=client.model)
-
-
