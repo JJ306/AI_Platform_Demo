@@ -1,4 +1,4 @@
-"""Day 2 — a Gradio frontend for RAG (model selection + indexed-doc visibility).
+"""Day-2 Gradio frontend for RAG (model selection + indexed-doc visibility).
 
 Users upload documents (txt / md / pdf), pick an embedding model and an answering
 model, see which documents are indexed, and chat with them. Uploads go into Qdrant
@@ -97,3 +97,5 @@ def build_ui() -> gr.Blocks:
 
 if __name__ == "__main__":
     build_ui().launch(server_name="0.0.0.0", server_port=7860)
+
+
