@@ -1,3 +1,4 @@
+# Containerize the miniplat API. Build context is the repo root.
 FROM python:3.12-slim
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
@@ -12,5 +13,4 @@ RUN useradd -u 10001 -m appuser
 USER appuser
 
 EXPOSE 8000
-CMD ["uvicorn", "miniplat.main:app", "--host", "0.0.0.0", "--port", "8000"] 
-
+CMD ["uvicorn", "miniplat.main:app", "--host", "0.0.0.0", "--port", "8000"]
